@@ -1,0 +1,20 @@
+{
+  "name": "wdio-junit-xray-reporter",
+  "version": "0.1.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {},
+  "keywords": [
+    "xray",
+    "junit",
+    "wdio",
+    "moca",
+    "reporter"
+  ],
+  "author": "alec-js",
+  "license": "ISC",
+  "dependencies": {
+    "@wdio/junit-reporter": "^8.16.17"
+  }
+}
