@@ -45,7 +45,7 @@ class JUnitXrayReporter extends JunitReporter {
         .className(classNameFormat)
         .name(testName)
         .time(test._duration / 1000);
-      // .property('test_key', key)
+        .property('test_key', key)
       if (this.options.addFileAttribute) {
         testCase.file(filePath);
       }
