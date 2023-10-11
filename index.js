@@ -1,7 +1,10 @@
 "use strict";
 
 import JunitReporter from "@wdio/junit-reporter";
-
+const ansiRegex = new RegExp([
+  '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
+  '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))'
+].join('|'), 'g');
 class JUnitXrayReporter extends JunitReporter {
   _addSuiteToBuilder(builder, runner, specFileName, suite) {
     const filePath = specFileName.replace(process.cwd(), ".");
@@ -66,21 +69,9 @@ class JUnitXrayReporter extends JunitReporter {
             for (const key of Object.keys(errorOptions)) {
               testCase[key](test.error[errorOptions[key]]);
             }
-          } else {
-            // default
-            testCase.error(test.error.message);
-          }
-          testCase.standardError(
-            `\n${test.error.stack?.replace(ansiRegex, "")}\n`
-          );
-        } else {
-          testCase.error();
+          } 
+          testCase.stacktrace(`${test.error.stack?.replace(ansiRegex, "")}\n`);
         }
-        testCase.failure();
-      }
-      const output = this._getStandardOutput(test);
-      if (output) {
-        testCase.standardOutput(`\n${output}\n`);
       }
     }
     return builder;
