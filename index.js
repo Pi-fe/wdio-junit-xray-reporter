@@ -29,7 +29,8 @@ class JUnitXrayReporter extends JunitReporter {
         continue;
       }
       const test = suite.tests[testKey];
-      const key = test.title.split(" | ")[1];
+      const tempArray = test.title.replaceAll(' ','').split("|");
+      const key = tempArray[tempArray.length-1]
       const testName = this._prepareName(test.title);
       const classNameFormat = this.options.classNameFormat
         ? this.options.classNameFormat({
@@ -44,7 +45,7 @@ class JUnitXrayReporter extends JunitReporter {
         .testCase()
         .className(classNameFormat)
         .name(testName)
-        .time(test._duration / 1000);
+        .time(test._duration / 1000)
         .property('test_key', key)
       if (this.options.addFileAttribute) {
         testCase.file(filePath);
