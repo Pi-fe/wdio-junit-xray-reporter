@@ -29,8 +29,7 @@ class JUnitXrayReporter extends JunitReporter {
         continue;
       }
       const test = suite.tests[testKey];
-      const tempArray = test.title.replaceAll(' ','').split("|");
-      const key = tempArray[tempArray.length-1]
+      const key = test.title.replaceAll(' ', '').split("|").pop();
       const testName = this._prepareName(test.title);
       const classNameFormat = this.options.classNameFormat
         ? this.options.classNameFormat({
