@@ -25,7 +25,7 @@ $ npm install -g wdio-junit-xray-reporter
 
 ```shell
 describe('My First Test', () => {
-  it('Does not do much!', {xray:{jiraID:"CALC-1234"}}, () => {
+  it('Does not do much! | CALC-1234', () => {
     expect(true).to.equal(true);
   })
 })
@@ -60,7 +60,7 @@ TODO
 
 ```shell
 describe('My First Test', () => {
-        it('Does not do much!', {xray:{jiraID:"CALC-1234"}}, () => {
+        it('Does not do much! | CALC-1234', () =>  {
             expect(true).to.equal(true);
         })
     })
